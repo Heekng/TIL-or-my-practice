@@ -1,0 +1,27 @@
+spring:
+  docker:
+    compose:
+      file: ./spring-with-kafka/compose.yml
+      enabled: true
+      lifecycle-management: start_and_stop
+      stop:
+        command: down
+        timeout: 1m
+  kafka:
+    producer:
+      bootstrap-servers: 127.0.0.1:10001,127.0.0.1:10002,127.0.0.1:10003
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      client-id: kafka-producer-1
+    consumer:
+      bootstrap-servers: 127.0.0.1:10001,127.0.0.1:10002,127.0.0.1:10003
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      group-id: kafka-consumer-group-1
+      auto-offset-reset: earliest
+      client-id: kafka-consumer-1
+      properties:
+        spring.json.trusted.packages: com.heekng.springwithkafka.dto
+    listener:
+      concurrency: 3
+      ack-mode: record
