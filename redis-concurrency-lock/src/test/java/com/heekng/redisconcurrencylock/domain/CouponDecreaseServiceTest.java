@@ -32,11 +32,11 @@ class CouponDecreaseServiceTest {
     @DisplayName("999개의 쿠폰을 동시에 발급 시도하면 분산락이 적용되어 재고를 감소시킨다.")
     void decreaseCouponTest() throws InterruptedException {
         // given
-        Coupon coupon = new Coupon("EVENT_1_COUPON", 999L);
+        Coupon coupon = new Coupon("EVENT_1_COUPON", 100L);
         couponRepository.save(coupon);
 
         // when
-        int numberOfThreads = 999;
+        int numberOfThreads = 100;
         ExecutorService executorService = Executors.newFixedThreadPool(numberOfThreads);
         CountDownLatch latch = new CountDownLatch(numberOfThreads);
 

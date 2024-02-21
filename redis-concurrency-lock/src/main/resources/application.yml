@@ -4,12 +4,15 @@ spring:
       host: localhost
       port: 6379
       password:
-#  jpa:
-#    properties:
-#      hibernate:
-#        show_sql: true
-#        format_sql: true
-#        use_sql_comments: true
   datasource:
     hikari:
       maximum-pool-size: 20001
+  docker:
+    compose:
+      enabled: true
+      lifecycle-management: start_and_stop
+      stop:
+        command: down
+        timeout: 1m
+      file: ./redis-concurrency-lock/compose.yaml
+
