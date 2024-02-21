@@ -31,17 +31,17 @@ public class TopicConfig {
 
     @Bean
     public NewTopic testTopic1() {
-        return new NewTopic(TOPIC_NAME_1, 3, CreateTopicsRequest.NO_REPLICATION_FACTOR);
+        return new NewTopic(TOPIC_NAME_1, 3, (short) 3);
     }
 
     @Bean
     public NewTopic testTopic2() {
-        return new NewTopic(TOPIC_NAME_2, 3, CreateTopicsRequest.NO_REPLICATION_FACTOR);
+        return new NewTopic(TOPIC_NAME_2, 3, (short) 3);
     }
 
     @Bean
     public NewTopic testTopic3() {
-        return new NewTopic(TOPIC_NAME_3, 3, CreateTopicsRequest.NO_REPLICATION_FACTOR);
+        return new NewTopic(TOPIC_NAME_3, 3, (short) 3);
     }
 
 }
