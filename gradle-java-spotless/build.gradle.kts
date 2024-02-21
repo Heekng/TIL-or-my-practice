@@ -29,10 +29,11 @@ spotless {
     java {
         googleJavaFormat()
 
-        removeUnusedImports()
-        trimTrailingWhitespace()
+        importOrder() // import 정렬
+        removeUnusedImports() // 사용하지 않는 import 제거
+        trimTrailingWhitespace() // 공백 제거
         indentWithTabs(2)
         indentWithSpaces(4)
-        endWithNewline()
+        endWithNewline() // 마지막 라인에 NewLine
     }
 }
