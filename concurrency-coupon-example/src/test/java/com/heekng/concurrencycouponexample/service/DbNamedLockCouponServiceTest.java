@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class OptimisticLockCouponServiceTest {
+class DbNamedLockCouponServiceTest {
 
     @Autowired
-    private OptimisticLockCouponService couponService;
+    private DbNamedLockCouponService couponService;
     @Autowired
     private CouponRepository couponRepository;
     @Autowired
@@ -32,8 +32,8 @@ class OptimisticLockCouponServiceTest {
     }
 
     @Test
-    @DisplayName("OptimisticLock을 이용한 동시성 해결")
-    void OptimisticLock을_이용한_동시성_해결() throws Exception {
+    @DisplayName("DbNamedLock을 이용한 동시성 해결")
+    void DbNamedLock을_이용한_동시성_해결() throws Exception {
         // given
         Coupon coupon = couponRepository.saveAndFlush(new Coupon("COUPON_1", 100L));
 
@@ -46,8 +46,6 @@ class OptimisticLockCouponServiceTest {
             executorService.submit(() -> {
                 try {
                     couponService.appendCouponUser(coupon.getId(), currentUserId);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
                 } finally {
                     latch.countDown();
                 }

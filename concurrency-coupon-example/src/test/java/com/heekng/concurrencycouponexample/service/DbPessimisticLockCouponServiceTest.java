@@ -16,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PessimisticLockCouponServiceTest {
+class DbPessimisticLockCouponServiceTest {
 
     @Autowired
-    private PessimisticLockCouponService couponService;
+    private DbPessimisticLockCouponService couponService;
     @Autowired
     private CouponRepository couponRepository;
     @Autowired
