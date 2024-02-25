@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.Version;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
@@ -25,6 +26,9 @@ public class Coupon {
 
     @OneToMany(mappedBy = "coupon", cascade = CascadeType.ALL)
     private List<CouponUser> couponUsers = new ArrayList<>();
+
+    @Version
+    private Long version;
 
     public Coupon(String couponCode, Long quantity) {
         this.couponCode = couponCode;
