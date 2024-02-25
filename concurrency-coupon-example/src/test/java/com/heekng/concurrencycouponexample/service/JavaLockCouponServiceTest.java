@@ -1,8 +1,5 @@
 package com.heekng.concurrencycouponexample.service;
 
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 import com.heekng.concurrencycouponexample.domain.Coupon;
 import com.heekng.concurrencycouponexample.domain.CouponRepository;
 import com.heekng.concurrencycouponexample.domain.CouponUser;
@@ -19,10 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LocalLockCouponServiceTest {
+class JavaLockCouponServiceTest {
 
     @Autowired
-    private LocalLockCouponService couponService;
+    private JavaLockCouponService couponService;
     @Autowired
     private CouponRepository couponRepository;
     @Autowired
