@@ -1,8 +1,12 @@
+server:
+  shutdown: graceful
 spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
   docker:
     compose:
       file: ./spring-with-kafka/compose.yml
-      enabled: true
+      enabled: false
       lifecycle-management: start_and_stop
       stop:
         command: down
@@ -10,18 +14,21 @@ spring:
   kafka:
     producer:
       bootstrap-servers: 127.0.0.1:10001,127.0.0.1:10002,127.0.0.1:10003
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       client-id: kafka-producer-1
+      acks: all
+      enable-idempotence: true # 중복 커밋을 막기 위함, 멱등
+      min-in-sync-replicas: 2 # acks all 설정시 두개 리플리케이션 확인
+      max-in-flight-requests-per-connection: 1 # 메세지 발행의 순서를 보장하기 위해 설정
     consumer:
       bootstrap-servers: 127.0.0.1:10001,127.0.0.1:10002,127.0.0.1:10003
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       group-id: kafka-consumer-group-1
-      auto-offset-reset: earliest
+      auto-offset-reset: earliest # 처음부터 메세지를 구독
       client-id: kafka-consumer-1
-      properties:
-        spring.json.trusted.packages: com.heekng.springwithkafka.dto
+      timeout-ms: 15000 # 요청에 대한 응답을 기다리는 최대 시간
+      fetch-min-bytes: 1 # 레코드 최소 크기
+      fetch-max-wait-ms: 500 # 500ms 대기한 후 메세지를 수신
+      max-poll-records: 1 # consumer 가 message 를 polling 하는 단위
+      enable-auto-commit: false # auto commit 비활성화
     listener:
       concurrency: 3
-      ack-mode: record
+      ack-mode: record # KafkaListener에 의해 레코드 처리 후 offset commit
