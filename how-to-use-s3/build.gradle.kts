@@ -29,6 +29,13 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+
+    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
+
+    implementation(platform("software.amazon.awssdk:bom:2.29.39"))
+    implementation("software.amazon.awssdk:s3")
+
+    implementation("org.testcontainers:localstack")
 }
 
 tasks.withType<Test> {
