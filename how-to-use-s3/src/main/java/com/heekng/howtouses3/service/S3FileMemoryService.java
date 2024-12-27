@@ -18,12 +18,12 @@ public class S3FileMemoryService {
 
     private final S3Client s3Client;
 
-    public String upload(String bucket, String key, File file) {
+    public String upload(String bucket, String key, byte[] file) {
         s3Client.putObject(builder -> {
                     builder.bucket(bucket);
                     builder.key(key);
                 },
-                RequestBody.fromFile(file));
+                RequestBody.fromBytes(file));
 
         S3Utilities s3Utilities = s3Client.utilities();
         URL url = s3Utilities.getUrl(builder -> {

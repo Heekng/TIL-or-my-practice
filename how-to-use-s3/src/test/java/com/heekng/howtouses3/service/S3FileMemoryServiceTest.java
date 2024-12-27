@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 
+import java.nio.file.Files;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 class S3FileMemoryServiceTest extends IntegrationTest {
@@ -22,7 +24,7 @@ class S3FileMemoryServiceTest extends IntegrationTest {
         var sampleFile = new ClassPathResource("static/sample.txt").getFile();
 
         // when
-        String upload = s3FileMemoryService.upload(bucket, key, sampleFile);
+        String upload = s3FileMemoryService.upload(bucket, key, Files.readAllBytes(sampleFile.toPath()));
         System.out.println(">>> " + upload);
 
         // then

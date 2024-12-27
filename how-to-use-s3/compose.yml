@@ -9,3 +9,5 @@ services:
       - USE_SSL=0
     ports:
       - 4566:4566
+    volumes:
+      - ./scripts/create-local-s3-bucket.sh:/etc/localstack/init/ready.d/init-aws.sh

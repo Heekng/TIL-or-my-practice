@@ -6,10 +6,10 @@ spring:
   docker:
     compose:
       file: ./how-to-use-s3/compose.yml
-      enabled: true
+      enabled: false
       lifecycle-management: start_and_stop
       stop:
         command: down
         timeout: 1m
 aws:
-  endpoint: localhost:4566
+  endpoint: http://127.0.0.1:4566
