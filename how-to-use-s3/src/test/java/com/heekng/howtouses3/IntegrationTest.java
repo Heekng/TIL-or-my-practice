@@ -43,6 +43,7 @@ public class IntegrationTest {
                         "file-bucket"
                 );
                 properties.put("aws.endpoint", aws.getEndpoint().toString());
+                System.out.println("endpoint: " + aws.getEndpoint());
             } catch (Exception e) {}
 
             TestPropertyValues.of(properties)

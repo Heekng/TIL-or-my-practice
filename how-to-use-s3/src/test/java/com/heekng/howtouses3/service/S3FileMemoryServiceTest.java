@@ -23,7 +23,7 @@ class S3FileMemoryServiceTest extends IntegrationTest {
 
         // when
         String upload = s3FileMemoryService.upload(bucket, key, sampleFile);
-        System.out.println(upload);
+        System.out.println(">>> " + upload);
 
         // then
         byte[] bytes = s3FileMemoryService.get(bucket, key);
