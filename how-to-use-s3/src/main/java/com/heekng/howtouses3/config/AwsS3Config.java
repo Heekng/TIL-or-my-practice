@@ -11,8 +11,6 @@ import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.presigner.S3Presigner;
 
-import java.net.URI;
-
 @Configuration
 public class AwsS3Config {
 
@@ -40,7 +38,7 @@ public class AwsS3Config {
     public S3Client s3Client() {
         return S3Client.builder()
                 .credentialsProvider(awsCredentialsProvider())
-                .endpointOverride(URI.create(AWS_ENDPOINT))
+                // .endpointOverride(URI.create(AWS_ENDPOINT))
                 .region(Region.AP_NORTHEAST_2)
                 .build();
     }
@@ -50,7 +48,7 @@ public class AwsS3Config {
         return S3Presigner.builder()
                 .region(Region.AP_NORTHEAST_2)
                 .credentialsProvider(awsCredentialsProvider())
-                .endpointOverride(URI.create(AWS_ENDPOINT))
+                // .endpointOverride(URI.create(AWS_ENDPOINT))
                 .build();
     }
 

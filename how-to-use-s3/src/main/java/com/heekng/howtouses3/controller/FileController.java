@@ -25,13 +25,14 @@ public class FileController {
     @PostMapping("/memory/upload")
     public String memoryUpload(@RequestParam("file") MultipartFile file) throws IOException {
         String key = UUID.randomUUID().toString().substring(0, 10);
-        return s3FileMemoryService.upload("test-bucket", key, file.getBytes());
+        return s3FileMemoryService.upload("file-service-test-hee", key, file.getBytes());
     }
 
     @GetMapping("/presigned/url")
-    public String presignedUrl() {
+    public String presignedUrl(@RequestParam String contentType, @RequestParam Long contentLength) {
         String key = UUID.randomUUID().toString().substring(0, 10);
-        return s3FilePresignedService.getPreSignedUrl("test-bucket", key, Map.of());
+        return s3FilePresignedService.getPreSignedUrl("file-service-test-hee", key, Map.of("aaa", "aaaa", "bbb", "bbbb"), contentType, contentLength);
+        // return s3FilePresignedService.getPreSignedUrl("file-service-test-hee", key, Map.of("Cache-Control", "no-cache", "Content-Type", "application/json"));
     }
 
 }
