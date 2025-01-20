@@ -1,0 +1,15 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  docker:
+    compose:
+      file: ./how-to-use-s3/compose.yml
+      enabled: false
+      lifecycle-management: start_and_stop
+      stop:
+        command: down
+        timeout: 1m
+aws:
+  endpoint: http://127.0.0.1:4566
