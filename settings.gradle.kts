@@ -1,8 +1,8 @@
 rootProject.name = "TIL"
 
-include("concurrency-coupon-example")
-include("gradle-java-spotless")
-include("hot-to-use-s3")
-include("redis-concurrency-lock")
-include("redis-various-ways")
-include("spring-with-kafka")
+include("services:concurrency-coupon-example")
+include("services:gradle-java-spotless")
+include("services:how-to-use-s3")
+include("services:redis-concurrency-lock")
+include("services:redis-various-ways")
+include("services:spring-with-kafka")
