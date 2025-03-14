@@ -2,11 +2,9 @@ package com.demo.springkafkaevent.event;
 
 import com.demo.springkafkaevent.util.DataSerializer;
 
-import java.util.Optional;
-
 public record Event<T extends EventPayload>(
         Long eventId,
-        EventType eventType,
+        EventType type,
         T payload
 ) {
     public static Event<EventPayload> of(EventType type, EventPayload payload) {
