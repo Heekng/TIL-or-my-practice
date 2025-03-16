@@ -30,6 +30,7 @@ public class MessageRelay {
     @Async("messageRelayPublishEventExecutor")
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void publishEvent(OutboxEvent outboxEvent) {
+        log.info("[MessageRelay.publishEvent async] outboxEvent = {}", outboxEvent);
         publishEvent(outboxEvent.eventOutboxEntity());
     }
 
