@@ -3,7 +3,7 @@ package com.demo.springkafkaevent.event;
 import com.demo.springkafkaevent.util.DataSerializer;
 
 public record Event<T extends EventPayload>(
-        Long eventId,
+        Long eventKey,
         EventType type,
         T payload
 ) {
